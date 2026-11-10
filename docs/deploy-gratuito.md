@@ -11,13 +11,14 @@ Este guia detalha o passo a passo completo para publicar o site da **Igreja Bíb
 3. Copie:
    - **`DATABASE_URL`**: `libsql://herdeiros-de-deus-<seu-usuario>.turso.io`
    - **`DATABASE_AUTH_TOKEN`**: Token de acesso gerado no painel do Turso (ou via CLI `turso db tokens create herdeiros-de-deus`).
-4. No seu terminal local, aplique as tabelas e o seed inicial apontando para o Turso:
+4. *(Opcional)* Caso deseje pré-aplicar manualmente pelo terminal, você pode rodar:
    ```powershell
    $env:DATABASE_URL="libsql://herdeiros-de-deus-seuusuario.turso.io"
    $env:DATABASE_AUTH_TOKEN="seu_token_aqui"
    npx drizzle-kit push
    npm run db:seed
    ```
+   > ✨ **Facilitador Automático:** O sistema também possui bootstrap automático em [`src/db/bootstrap.ts`](../src/db/bootstrap.ts)! Mesmo sem rodar comandos no terminal, no primeiro acesso ao site em produção todas as 10 tabelas e os dados iniciais são criados automaticamente caso o banco esteja vazio.
 
 ---
 

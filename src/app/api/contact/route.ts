@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { requireRole } from "@/lib/auth";
 
 const contactSchema = z.object({
@@ -32,6 +33,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    await ensureDatabaseReady();
     const body = await req.json();
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {

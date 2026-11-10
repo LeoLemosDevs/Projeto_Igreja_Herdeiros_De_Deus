@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { desc, eq, and } from "drizzle-orm";
 import { z } from "zod";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { feedCategories } from "@/db/schema";
 import { requireRole } from "@/lib/auth";
 import { safeJsonParseArray, slugify } from "@/lib/utils";
@@ -26,6 +27,7 @@ const feedPostSchema = z.object({
 
 export async function GET(req: NextRequest) {
   try {
+    await ensureDatabaseReady();
     const { searchParams } = new URL(req.url);
     const category = searchParams.get("category");
     const q = (searchParams.get("q") || "").trim().toLowerCase();

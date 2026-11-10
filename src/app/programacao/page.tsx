@@ -3,6 +3,7 @@ import Link from "next/link";
 import { asc, eq } from "drizzle-orm";
 import { Calendar, Clock, MapPin, Users, Sparkles, ArrowRight } from "lucide-react";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ChurchLocationMap } from "@/components/ChurchLocationMap";
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProgramacaoPage() {
+  await ensureDatabaseReady();
   const schedules = await db
     .select()
     .from(schema.worshipSchedules)

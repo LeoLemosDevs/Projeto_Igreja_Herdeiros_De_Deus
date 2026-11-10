@@ -1,9 +1,12 @@
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
-import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import type { UserRole } from "@/db/schema";
+import { hashPassword, verifyPassword } from "./password";
+
+export { hashPassword, verifyPassword };
 
 const SESSION_COOKIE_NAME = "herdeiros_session";
 const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 dias
@@ -23,17 +26,6 @@ export interface SessionUser {
   bio: string | null;
   avatarUrl: string | null;
   phone: string | null;
-}
-
-export async function hashPassword(plain: string): Promise<string> {
-  return bcrypt.hash(plain, 10);
-}
-
-export async function verifyPassword(
-  plain: string,
-  hash: string
-): Promise<boolean> {
-  return bcrypt.compare(plain, hash);
 }
 
 export async function createSessionToken(
@@ -66,6 +58,7 @@ export async function clearSessionCookie(): Promise<void> {
 
 export async function getSessionUser(): Promise<SessionUser | null> {
   try {
+    await ensureDatabaseReady();
     const cookieStore = await cookies();
     const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
     if (!token) return null;

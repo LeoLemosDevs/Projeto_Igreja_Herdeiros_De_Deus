@@ -1,8 +1,7 @@
-import "dotenv/config";
 import crypto from "node:crypto";
 import { count } from "drizzle-orm";
 import { db, schema } from "./index";
-import { hashPassword } from "../lib/auth";
+import { hashPassword } from "../lib/password";
 
 export async function seedDatabase(force = false): Promise<{ skipped: boolean }> {
   const [{ value: existingUsers }] = await db
@@ -574,7 +573,8 @@ const isDirectExecution =
   process.argv[1].includes("seed");
 
 if (isDirectExecution) {
-  seedDatabase()
+  import("dotenv/config")
+    .then(() => seedDatabase())
     .then((res) => {
       console.log(
         res.skipped

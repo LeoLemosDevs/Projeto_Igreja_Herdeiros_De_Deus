@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { asc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { requireRole } from "@/lib/auth";
 
 const scheduleSchema = z.object({
@@ -20,6 +21,7 @@ const scheduleSchema = z.object({
 });
 
 export async function GET(req: NextRequest) {
+  await ensureDatabaseReady();
   const { searchParams } = new URL(req.url);
   const includeAll = searchParams.get("includeAll") === "1";
 

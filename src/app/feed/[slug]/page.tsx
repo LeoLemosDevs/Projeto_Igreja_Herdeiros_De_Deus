@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { eq, or } from "drizzle-orm";
 import { ArrowLeft, Calendar, MapPin, User } from "lucide-react";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { FEED_CATEGORY_LABELS, formatDatePtBr, safeJsonParseArray } from "@/lib/utils";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { PhotoGallery } from "@/components/PhotoGallery";
@@ -14,6 +15,7 @@ export default async function FeedDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  await ensureDatabaseReady();
   const { slug } = await params;
 
   const rows = await db

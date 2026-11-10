@@ -18,7 +18,7 @@ const globalForDb = globalThis as unknown as {
   libsqlClient?: ReturnType<typeof createClient>;
 };
 
-const client =
+export const client =
   globalForDb.libsqlClient ??
   createClient({
     url: databaseUrl,
@@ -31,4 +31,3 @@ if (process.env.NODE_ENV !== "production") {
 
 export const db = drizzle(client, { schema });
 export { schema };
-

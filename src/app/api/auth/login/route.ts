@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import {
   createSessionToken,
   setSessionCookie,
@@ -15,6 +16,7 @@ const loginSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    await ensureDatabaseReady();
     const body = await req.json();
     const parsed = loginSchema.safeParse(body);
     if (!parsed.success) {

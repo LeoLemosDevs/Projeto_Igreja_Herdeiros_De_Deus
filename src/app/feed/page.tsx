@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { desc, eq } from "drizzle-orm";
 import { db, schema } from "@/db";
+import { ensureDatabaseReady } from "@/db/bootstrap";
 import { safeJsonParseArray } from "@/lib/utils";
 import { SectionTitle } from "@/components/SectionTitle";
 import { FeedBrowser } from "@/components/FeedBrowser";
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function FeedPage() {
+  await ensureDatabaseReady();
   const rows = await db
     .select()
     .from(schema.feedPosts)
