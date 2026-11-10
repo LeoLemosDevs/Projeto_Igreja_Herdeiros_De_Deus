@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --brand-orange: #f7941d;
+  --brand-orange-hover: #df7d09;
+  --brand-amber: #fcaf3d;
+  --brand-gold: #fbab00;
+  --brand-slate: #243e4f;
+  --brand-slate-dark: #182b38;
+  --brand-slate-mid: #43525a;
+  --surface-light: #f8f9fa;
+  --surface-muted: #f4f4f4;
+  --text-main: #212529;
+  --text-muted: #5a6672;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--text-main);
+  font-family: var(--font-open-sans), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.heading-font {
+  font-family: var(--font-montserrat), var(--font-open-sans), system-ui, sans-serif;
+}
+
+/* Estilo caracteristico inspirado em vitoriaemcristo.org */
+.avec-section-title {
+  border-left: 5px solid #fcaf3d;
+  padding: 0.2rem 0 0.2rem 0.9rem;
+}
+
+.avec-btn-primary {
+  background-color: #f7941d;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.avec-btn-primary:hover {
+  background-color: #df7d09;
+}
+
+/* Scrollbar discreta para listas laterais estilo Kiwify */
+.kiwify-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kiwify-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+.kiwify-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
