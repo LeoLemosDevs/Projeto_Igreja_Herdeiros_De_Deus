@@ -2,6 +2,9 @@
 
 Site institucional, Feed de Publicações/Eventos e Plataforma de Cursos de Música (estilo Kiwify) da **Igreja Bíblica Herdeiros de Deus**, com design inspirado na estrutura editorial de `https://www.vitoriaemcristo.org/` e arquitetura **100% gratuita** para hospedagem e banco de dados.
 
+- **Protótipo Online (Vercel + Turso):** https://herdeirosdeus.vercel.app
+- **Repositório Oficial:** https://github.com/LeoLemosDevs/Projeto_Igreja_Herdeiros_De_Deus
+
 ## 🚀 Execução Rápida Local
 
 ```bash
@@ -35,3 +38,5 @@ Toda a documentação técnica, diagramas Mermaid, banco de dados, backend, fron
 - [Documentação do Frontend e Design System](./docs/frontend.md)
 - [Credenciais e Variáveis de Ambiente](./docs/credenciais.md)
 - [Guia de Deploy 100% Gratuito](./docs/deploy-gratuito.md)
+- [Hospedagem Ativa, Tokens e Segurança](./docs/hospedagem-e-producao.md)
+- [Contexto para Continuidade com IA](./docs/contexto-ia.md)

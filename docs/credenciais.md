@@ -13,10 +13,10 @@ Este documento detalha as variáveis de ambiente necessárias, boas práticas de
 | `DATABASE_URL` | Sim | `file:./data/herdeiros.db` | Crie um banco gratuito em [turso.tech](https://turso.tech) e copie a URL `libsql://...`. |
 | `DATABASE_AUTH_TOKEN` | Em produção | `""` (vazio local) | No painel/CLI do Turso, gere o token com `turso db tokens create <nome-db>`. |
 | `JWT_SECRET` | Sim | String de desenvolvimento | Gere uma chave aleatória forte (mín. 32 caracteres), ex.: `openssl rand -base64 32`. |
-| `NEXT_PUBLIC_APP_URL` | Recomendada | `http://localhost:3000` | URL final da aplicação (ex.: `https://herdeiros-de-deus.vercel.app`). |
+| `NEXT_PUBLIC_APP_URL` | Recomendada | `http://localhost:3000` | URL final da aplicação (`https://herdeirosdeus.vercel.app`). |
 | `NEXT_PUBLIC_CHURCH_NAME` | Opcional | `Igreja Bíblica Herdeiros de Deus` | Nome institucional da igreja. |
 | `NEXT_PUBLIC_CHURCH_EMAIL` | Opcional | `contato@herdeirosdedeus.org` | E-mail público de contato. |
-| `NEXT_PUBLIC_CHURCH_WHATSAPP` | Opcional | `5511999999999` | Número WhatsApp com DDI + DDD. |
+| `NEXT_PUBLIC_CHURCH_WHATSAPP` | Opcional | `5585999999999` | Número WhatsApp com DDI + DDD (Fortaleza - CE). |
 | `CLOUDINARY_CLOUD_NAME` | Opcional | `""` | Crie conta gratuita em [cloudinary.com](https://cloudinary.com) para salvar fotos do Feed/Cursos na nuvem. |
 | `CLOUDINARY_API_KEY` | Opcional | `""` | Copie no Dashboard do Cloudinary (API Keys). |
 | `CLOUDINARY_API_SECRET` | Opcional | `""` | Copie no Dashboard do Cloudinary (API Keys). |

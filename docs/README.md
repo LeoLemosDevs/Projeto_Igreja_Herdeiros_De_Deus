@@ -17,6 +17,8 @@ Este projeto foi desenvolvido com foco em **custo zero de infraestrutura** (hosp
 | [05. Frontend e Design System](./frontend.md) | Mapa de páginas, identidade visual, componentes reutilizáveis e módulos estilo Kiwify. |
 | [06. Credenciais e Variáveis de Ambiente](./credenciais.md) | Configuração do `.env`, credenciais de demonstração do seed local e criação de chaves gratuitas na nuvem. |
 | [07. Guia de Deploy 100% Gratuito](./deploy-gratuito.md) | Passo a passo prático para publicar banco Turso, Cloudinary, Vercel e domínio gratuito. |
+| [08. Hospedagem Ativa e Segurança](./hospedagem-e-producao.md) | Registro do ambiente online (`https://herdeirosdeus.vercel.app`), Turso em São Paulo, gestão de tokens e checklist pós-aprovação. |
+| [09. Contexto para Continuidade com IA](./contexto-ia.md) | Memória técnica, decisões resolvidas e prompt pronto para continuar o projeto em novas sessões de IA. |
 
 ---
 
