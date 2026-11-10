@@ -154,9 +154,23 @@ const globalForBootstrap = globalThis as unknown as {
 };
 
 async function runBootstrap(): Promise<void> {
-  for (const stmt of DDL_STATEMENTS) {
-    await client.execute(stmt);
+  try {
+    const check = await client.execute(
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='users'"
+    );
+    if (check.rows.length > 0) {
+      const countRes = await client.execute("SELECT count(*) AS total FROM users");
+      const total = Number(countRes.rows[0]?.total ?? 0);
+      if (total > 0) return;
+    }
+  } catch {
+    // Segue para criacao de tabelas em lote
   }
+
+  await client.batch(
+    DDL_STATEMENTS.map((sql) => ({ sql, args: [] })),
+    "write"
+  );
   await seedDatabase(false);
 }
 

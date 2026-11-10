@@ -7,10 +7,14 @@ import * as schema from "./schema";
 const databaseUrl = process.env.DATABASE_URL || "file:./data/herdeiros.db";
 
 if (databaseUrl.startsWith("file:")) {
-  const filePath = databaseUrl.replace(/^file:/, "");
-  const resolvedDir = path.dirname(path.resolve(process.cwd(), filePath));
-  if (!fs.existsSync(resolvedDir)) {
-    fs.mkdirSync(resolvedDir, { recursive: true });
+  try {
+    const filePath = databaseUrl.replace(/^file:/, "");
+    const resolvedDir = path.dirname(path.resolve(process.cwd(), filePath));
+    if (!fs.existsSync(resolvedDir)) {
+      fs.mkdirSync(resolvedDir, { recursive: true });
+    }
+  } catch {
+    // Ignora caso esteja em ambiente somente leitura durante build
   }
 }
 
