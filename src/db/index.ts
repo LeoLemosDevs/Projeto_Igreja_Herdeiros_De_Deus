@@ -6,7 +6,12 @@ import { createClient as createWebClient } from "@libsql/client/web";
 import { drizzle as drizzleWeb } from "drizzle-orm/libsql/web";
 import * as schema from "./schema";
 
-const databaseUrl = process.env.DATABASE_URL || "file:./data/herdeiros.db";
+function cleanEnv(val?: string): string {
+  return (val || "").trim().replace(/^["']|["']$/g, "");
+}
+
+const databaseUrl = cleanEnv(process.env.DATABASE_URL) || "file:./data/herdeiros.db";
+const authToken = cleanEnv(process.env.DATABASE_AUTH_TOKEN) || undefined;
 const isLocalFile = databaseUrl.startsWith("file:");
 
 if (isLocalFile) {
@@ -32,7 +37,7 @@ function initDatabase(): { client: Client; db: LibSQLDatabase<typeof schema> } {
       globalForDb.libsqlClient ??
       createWebClient({
         url: databaseUrl,
-        authToken: process.env.DATABASE_AUTH_TOKEN || undefined,
+        authToken,
       });
 
     if (process.env.NODE_ENV !== "production") {
@@ -55,7 +60,7 @@ function initDatabase(): { client: Client; db: LibSQLDatabase<typeof schema> } {
     globalForDb.libsqlClient ??
     createNodeClient({
       url: databaseUrl,
-      authToken: process.env.DATABASE_AUTH_TOKEN || undefined,
+      authToken,
     });
 
   if (process.env.NODE_ENV !== "production") {
